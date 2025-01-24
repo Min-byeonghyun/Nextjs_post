@@ -14,4 +14,4 @@ export default async function Detail(props) {
       <p>{result.content}</p>
     </div>
   );
-}
+};
