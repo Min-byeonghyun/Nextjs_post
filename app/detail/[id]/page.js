@@ -2,10 +2,9 @@ import { ObjectId } from "mongodb";
 import { connectDB } from "@/util/database.js";
 
 export default async function Detail(props) {
+  const { id } = await props.params;
   let db = (await connectDB).db("Next실습");
-  let result = await db
-    .collection("post")
-    .findOne( {_id: new ObjectId(props.params.id) });
+  let result = await db.collection("post").findOne({ _id: new ObjectId(id) });
 
   return (
     <div>
@@ -14,4 +13,4 @@ export default async function Detail(props) {
       <p>{result.content}</p>
     </div>
   );
-};
+}
