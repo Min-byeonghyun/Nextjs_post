@@ -1,26 +1,19 @@
 import { connectDB } from "@/util/database";
-import Link from "next/link";
 import DetailLink from "./DetailLink";
+import ListItem from "./ListItem";
 
-export default async function List() {
+export default async function List(props) {
   const db = (await connectDB).db("Next실습");
   let result = await db.collection("post").find().toArray();
 
+  const formattedResult = result.map((data) => ({
+    ...data,
+    _id: data._id.toString(), // ObjectId를 문자열로 변환
+  }));
+
   return (
     <div className="list-bg">
-      {result.map((data) => {
-        console.log(data);
-        return (
-          <div className="list-item" key={data._id}>
-            <Link prefetch={false} href={`/detail/${data._id}`}>
-              <h4>{data.title}</h4>
-              <p>1월 1일</p>
-            </Link>
-
-            <Link href={`/edit/${data._id}`}>수정</Link>
-          </div>
-        );
-      })}
+      <ListItem result={formattedResult} />
       <DetailLink />
     </div>
   );

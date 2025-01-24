@@ -6,6 +6,7 @@ export default function DetailLink() {
   let router = useRouter();
   return (
     <button
+      className="homeButton"
       onClick={() => {
         router.push("/");
       }}
