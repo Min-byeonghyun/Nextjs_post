@@ -1,6 +1,7 @@
 import { connectDB } from "@/util/database";
 import DetailLink from "./DetailLink";
 import ListItem from "./ListItem";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,8 @@ export default async function List(props) {
   return (
     <div className="list-bg">
       <ListItem result={formattedResult} />
-      <DetailLink />
+      <DetailLink />     
+      <Link href='/write'>글작성</Link>
     </div>
   );
 }

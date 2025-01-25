@@ -22,7 +22,10 @@ export default async function RootLayout({ children }) {
               <LogOutBtn />
             </span>
           ) : (
+            <>
             <LoginBtn />
+            <Link href='/register'>회원가입</Link>
+            </>
           )}
         </div>
         {children}
