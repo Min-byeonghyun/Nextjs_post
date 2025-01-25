@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 export default function ListItem({ result }) {
+  console.log(result);
   return (
     <div>
       {result.map((data) => {
@@ -15,8 +16,9 @@ export default function ListItem({ result }) {
             <span
               className="delete"
               onClick={(e) => {
-                fetch(`/api/post/delete?_id=${data._id}`, {
+                fetch(`/api/post/delete`, {
                   method: "POST",
+                  body: data._id,
                 }).then(() => {
                   e.target.parentElement.style.opacity = 0;
                   setTimeout(() => {
@@ -27,6 +29,7 @@ export default function ListItem({ result }) {
             >
               🗑️
             </span>
+            <div>글쓴이 : {data.author}</div>
           </div>
         );
       })}

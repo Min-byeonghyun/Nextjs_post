@@ -1,4 +1,7 @@
 export default function Write() {
+
+  
+  
   return (
     <div className="postview">
       <h3>글작성</h3>
