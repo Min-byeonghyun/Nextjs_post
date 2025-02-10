@@ -19,6 +19,6 @@ export default async function handler(req, res) {
 
     const db = (await connectDB).db("Next실습");
     let result = await db.collection("comment").insertOne(저장할거);
-    res.status(200).json("저장완료");
+    res.status(200).json(저장할거 );
   }
 }

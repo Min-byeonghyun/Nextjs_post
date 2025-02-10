@@ -12,18 +12,17 @@ export default function Comment(props) {
       .then((result) => {
         setData(result);
       });
-  }, []);
+  }, [props._id]);
 
   return (
     <div>
+      <hr></hr>
       <div>댓글목록 보여줄 부분</div>
-      {
-      data.length > 0 ? 
-      data.map((data, i) => 
-        <p key={i}>{data.content}</p>)
-       : '댓글없음'
-       }
+      {data.length > 0
+        ? data.map((data, i) => <p key={i}>{data.content}</p>)
+        : "댓글없음"}
       <input
+        value={comment}
         onChange={(e) => {
           setComment(e.target.value);
         }}
@@ -33,7 +32,12 @@ export default function Comment(props) {
           fetch("/api/comment/new", {
             method: "POST",
             body: JSON.stringify({ comment: comment, _id: props._id }),
-          });
+          })
+            .then((r) => r.json())
+            .then((newComment) => {
+              setData((prevData) => [...prevData, newComment]);
+              setComment("");
+            });
         }}
       >
         댓글전송
