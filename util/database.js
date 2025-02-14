@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 const url = "mongodb+srv://qudgus5125:qudgus0125@cluster0.7qg7p.mongodb.net/";
-const options = { 
+const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   ssl: true,
